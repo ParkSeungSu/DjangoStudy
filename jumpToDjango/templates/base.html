@@ -12,7 +12,7 @@
     <title>Hello Pybo</title>
 </head>
 <body>
-<!--------------------------[Edit]------------------------------->
+<!--------------------------[Edit]-------------------------------->
     {% include "navbar.html" %}
 
 <!-- 기본 템플릿 안에 삽입될 내용 Start-->
@@ -22,5 +22,7 @@
 
 <script src="{% static 'jquery-3.6.0.min.js' %}"></script>
 <script src="{% static 'bootstrap.min.js' %}"></script>
+{% block script %}
+{% endblock %}
 </body>
 </html>

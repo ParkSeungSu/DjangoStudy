@@ -7,21 +7,25 @@
         <thead>
             <tr class="thead-dark">
                 <th>번호</th>
-                <th>제목</th>
+                <th style="width: 50%;">제목</th>
+                <th>글쓴이</th>
                 <th>작성일시</th>
             </tr>
         </thead>
         <tbody>
             {% if question_list %}
             {% for question in question_list %}
-            <tr>
-                <td>{{ question_list.paginator.count|sub:question_list.start_index|sub:forloop.counter0|add:1 }}</td>
+            <tr class="text-center">
                 <td>
+                    {{ question_list.paginator.count|sub:question_list.start_index|sub:forloop.counter0|add:1 }}
+                </td>
+                <td class="text-left">
                     <a href="{% url 'pybo:detail' question.id %}">{{question.subject}}</a>
                     {% if question.answer_set.count > 0 %}
-                    <span class="text-dnager small ml-2">{{question.answer_set.count}}</span>
+                    <span class="text-danger small ml-2">{{question.answer_set.count}}</span>
                     {% endif %}
                 </td>
+                <td>{{question.author.username}}</td>
                 <td>{{question.create_date}}</td>
             </tr>
             {% endfor %}
@@ -64,7 +68,7 @@
             <!-- 다음 페이지 -->
             {% if question_list.has_next %}
             <li class="page-item">
-                <a class="page-link" href="?page={{question_list.next_page_number">다음</a>
+                <a class="page-link" href="?page={{question_list.next_page_number}}">다음</a>
             </li>
             {% else %}
             <li class="page-item diasabled">
